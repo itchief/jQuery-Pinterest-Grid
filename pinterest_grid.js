@@ -127,9 +127,8 @@
 
         for(var z = 0; z < columns; z++) {
             var temp_height = 0;
-            _container.find('.c'+z).each(function() {
-                temp_height += $(this).outerHeight();
-            });
+            temp_height = _container.find('.c'+z).filter(':last').position().top;
+            temp_height += _container.find('.c'+z).filter(':last').outerHeight();
             column_heights[z] = temp_height;
         }
 
