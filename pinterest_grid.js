@@ -125,11 +125,17 @@
         var column_heights = [],
             largest = 0;
 
-        for(var z = 0; z < columns; z++) {
-            var temp_height = 0;
-            temp_height = _container.find('.c'+z).filter(':last').position().top;
-            temp_height += _container.find('.c'+z).filter(':last').outerHeight();
-            column_heights[z] = temp_height;
+        var temp_height = 0;
+        if (_container.width()>=this.options.single_column_breakpoint) {
+            for(var z = 0; z < columns; z++) {
+                temp_height = _container.find('.c'+z).filter(':last').position().top;
+                temp_height += _container.find('.c'+z).filter(':last').outerHeight();
+                column_heights[z] = temp_height;
+            }
+        } else {
+            temp_height = _container.find('.c0').filter(':last').position().top;
+            temp_height += _container.find('.c0').filter(':last').outerHeight();
+            column_heights[0] = temp_height;
         }
 
         largest = Math.max.apply(Math, column_heights);
